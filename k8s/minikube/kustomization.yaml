@@ -10,6 +10,12 @@ resources:
   - mlflow-service.yaml
   - api-deployment.yaml
   - api-service.yaml
+  - prometheus-config.yaml
+  - prometheus-deployment.yaml
+  - prometheus-service.yaml
+  - grafana-datasources.yaml
+  - grafana-deployment.yaml
+  - grafana-service.yaml
 
 commonLabels:
   environment: development
