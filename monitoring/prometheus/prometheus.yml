@@ -1,0 +1,77 @@
+﻿# ====================================================
+# PROMETHEUS CONFIGURATION
+# ====================================================
+# 
+# Purpose: Configure Prometheus to scrape metrics from
+#          MLflow API and other services.
+#
+# Scrape Targets:
+#   - prometheus:9090  (self)
+#   - api:5000         (ML prediction API)
+#
+# Metrics collected:
+#   - Request counts
+#   - Request latencies
+#   - Prediction values
+#   - Model version info
+#
+# AUTHOR: MLOps Engineer
+# DATE: 2024-02-23
+# ====================================================
+
+global:
+  # How frequently to scrape targets
+  scrape_interval: 15s
+  
+  # How frequently to evaluate rules
+  evaluation_interval: 15s
+  
+  # Timeout for scrape requests
+  scrape_timeout: 10s
+
+# Alertmanager configuration (if needed)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+          # - alertmanager:9093
+
+# Rule files for alerts (if needed)
+rule_files:
+  # - "alerts.yml"
+
+# Scrape configurations
+scrape_configs:
+  # --------------------------------------------------
+  # PROMETHEUS SELF-MONITORING
+  # --------------------------------------------------
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  # --------------------------------------------------
+  # ML PREDICTION API
+  # --------------------------------------------------
+  - job_name: 'mlflow-api'
+    # Metrics path for Flask Prometheus exporter
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['api:5000']
+    scrape_interval: 10s
+    scrape_timeout: 5s
+    # Add labels for better identification
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'api'
+
+  # --------------------------------------------------
+  # DOCKER DAEMON (optional)
+  # --------------------------------------------------
+  # - job_name: 'docker'
+  #   static_configs:
+  #     - targets: ['host.docker.internal:9323']
+  #   scrape_interval: 30s

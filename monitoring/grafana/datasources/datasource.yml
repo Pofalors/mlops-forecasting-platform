@@ -1,0 +1,28 @@
+﻿# ====================================================
+# GRAFANA DATASOURCE CONFIGURATION
+# ====================================================
+#
+# Purpose: Configure Prometheus as a data source for Grafana
+#
+# Datasource Name: Prometheus
+# Type: prometheus
+# URL: http://prometheus:9090
+# Access: proxy
+#
+# AUTHOR: MLOps Engineer
+# DATE: 2024-02-23
+# ====================================================
+
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
+    jsonData:
+      timeInterval: "15s"
+      queryTimeout: "30s"
+      httpMethod: "POST"

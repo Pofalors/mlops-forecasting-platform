@@ -1,0 +1,209 @@
+
+# ====================================================
+# DOCKER COMPOSE CONFIGURATION FOR MLOPS PLATFORM
+# ====================================================
+# 
+# This configuration defines the complete MLOps platform including:
+#   - MLflow Tracking Server for experiment tracking
+#   - Training service for model training
+#   - Prediction API for serving models
+#   - Monitoring stack (Prometheus + Grafana)
+#
+# NETWORK: mlops-network (bridge)
+# 
+# SERVICES:
+#   mlflow    : MLflow tracking server (port 5001)
+#   training  : On-demand training service
+#   api       : Prediction API (port 5000)
+#   prometheus: Metrics collection (port 9090)
+#   grafana   : Visualization (port 3000)
+#
+# PROFILES:
+#   training  : Include training service (not started by default)
+#   monitoring: Include monitoring stack
+#
+# AUTHOR: FANIS SPANOS
+# DATE: 2026-02-23
+# ====================================================
+
+services:
+  # --------------------------------------------------
+  # MLFLOW TRACKING SERVER
+  # --------------------------------------------------
+  # Purpose: Track experiments, parameters, metrics, and artifacts
+  # Ports: 5001 (host) -> 5000 (container)
+  # Volumes: 
+  #   - ./mlflow:/mlflow (persistent storage)
+  # --------------------------------------------------
+  mlflow:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.mlflow
+    container_name: mlops-mlflow
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./mlflow:/mlflow  # Persist MLflow data
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MLFLOW_BACKEND_STORE_URI=sqlite:////mlflow/mlflow.db
+      - MLFLOW_ARTIFACT_ROOT=/mlflow/artifacts
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --artifacts-destination /mlflow/artifacts
+      --serve-artifacts
+    networks:
+      - mlops-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  # --------------------------------------------------
+  # TRAINING SERVICE
+  # --------------------------------------------------
+  # Purpose: Train ML models on demand
+  # Usage: docker-compose --profile training run --rm training [args]
+  # Profiles: training (not started by default)
+  # --------------------------------------------------
+  training:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.train
+    container_name: mlops-training
+    volumes:
+      - ./data:/app/data           # Training data
+      - ./mlflow/artifacts:/mlflow/artifacts  # Model artifacts
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MLFLOW_EXPERIMENT_NAME=energy_forecasting
+    depends_on:
+      - mlflow
+    networks:
+      - mlops-network
+    profiles:
+      - training
+    # No restart policy - this is a one-off job
+
+  # --------------------------------------------------
+  # PREDICTION API
+  # --------------------------------------------------
+  # Purpose: Serve ML models for real-time predictions
+  # Ports: 5000 (host) -> 5000 (container)
+  # Endpoints:
+  #   - GET  /health   : Health check
+  #   - POST /predict  : Make predictions
+  #   - GET  /metrics  : Prometheus metrics
+  # --------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: mlops-api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlflow/artifacts:/mlflow/artifacts  # Access to models
+      - ./logs:/app/logs                       # Application logs
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MODEL_URI=models:/energy_forecasting_model/Production
+      - FLASK_ENV=production
+      - FLASK_DEBUG=False
+      - LOG_LEVEL=INFO
+    depends_on:
+      - mlflow
+    networks:
+      - mlops-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # --------------------------------------------------
+  # PROMETHEUS MONITORING
+  # --------------------------------------------------
+  # Purpose: Collect metrics from services
+  # Ports: 9090 (host) -> 9090 (container)
+  # Profiles: monitoring (not started by default)
+  # --------------------------------------------------
+  prometheus:
+    image: prom/prometheus:v2.45.0
+    container_name: mlops-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+    networks:
+      - mlops-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # --------------------------------------------------
+  # GRAFANA DASHBOARDS
+  # --------------------------------------------------
+  # Purpose: Visualize metrics from Prometheus
+  # Ports: 3000 (host) -> 3000 (container)
+  # Credentials: admin / admin (first login)
+  # Profiles: monitoring (not started by default)
+  # --------------------------------------------------
+  grafana:
+    image: grafana/grafana:10.0.0
+    container_name: mlops-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    volumes:
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - mlops-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+# --------------------------------------------------
+# VOLUMES
+# --------------------------------------------------
+volumes:
+  prometheus-data:
+    name: mlops-prometheus-data
+  grafana-data:
+    name: mlops-grafana-data
+
+# --------------------------------------------------
+# NETWORKS
+# --------------------------------------------------
+networks:
+  mlops-network:
+    name: mlops-network
+    driver: bridge

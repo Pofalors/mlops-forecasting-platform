@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-server
+  namespace: mlops-platform
+  labels:
+    app: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "5000"
+        prometheus.io/path: "/metrics"
+    spec:
+      securityContext:
+        runAsUser: 0  # Προσωρινά τρέχει ως root για debugging
+      containers:
+      - name: api
+        image: mlops-forecasting-platform-api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MLFLOW_TRACKING_URI
+          valueFrom:
+            configMapKeyRef:
+              name: mlflow-config
+              key: MLFLOW_TRACKING_URI
+        - name: MODEL_URI
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: MODEL_URI
+        - name: FLASK_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: FLASK_ENV
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: LOG_LEVEL
+        volumeMounts:
+        - name: mlflow-storage
+          mountPath: /mlflow
+        - name: logs-storage
+          mountPath: /app/logs
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: mlflow-storage
+        hostPath:
+          path: /data/mlflow
+          type: DirectoryOrCreate
+      - name: logs-storage
+        hostPath:
+          path: /data/logs
+          type: DirectoryOrCreate
