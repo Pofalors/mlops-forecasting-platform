@@ -1624,3 +1624,159 @@
 2026-02-24 23:18:49,888 - werkzeug - INFO - 172.19.0.2 - - [24/Feb/2026 23:18:49] "GET /metrics HTTP/1.1" 200 -
 2026-02-24 23:18:59,884 - werkzeug - INFO - 172.19.0.2 - - [24/Feb/2026 23:18:59] "GET /metrics HTTP/1.1" 200 -
 2026-02-24 23:19:09,881 - werkzeug - INFO - 172.19.0.2 - - [24/Feb/2026 23:19:09] "GET /metrics HTTP/1.1" 200 -
+2026-02-24 23:28:49,115 - __main__ - INFO - ModelLoader initialized with tracking URI: http://mlflow:5000
+2026-02-24 23:28:49,117 - __main__ - INFO - ==================================================
+2026-02-24 23:28:49,118 - __main__ - INFO - MODEL LOADING INITIATED
+2026-02-24 23:28:49,118 - __main__ - INFO - ==================================================
+2026-02-24 23:28:49,119 - __main__ - INFO - Attempting to load production model from: models:/energy_forecasting_model/Production
+2026-02-24 23:28:50,633 - __main__ - WARNING - ⚠️ Could not load production model: No versions of model with name 'energy_forecasting_model' and stage 'Production' found
+2026-02-24 23:28:50,634 - __main__ - INFO - Falling back to latest model...
+2026-02-24 23:28:51,157 - __main__ - INFO - Attempting to load latest model from run: 6104aff464fe45d6919f207109821ec3
+2026-02-24 23:28:56,553 - __main__ - INFO - ✅ Successfully loaded model from run 6104aff464fe45d6919f207109821ec3
+2026-02-24 23:28:56,554 - __main__ - INFO - ==================================================
+2026-02-24 23:28:56,555 - __main__ - INFO - ENERGY FORECASTING API STARTING
+2026-02-24 23:28:56,555 - __main__ - INFO - ==================================================
+2026-02-24 23:28:56,555 - __main__ - INFO - Configuration:
+2026-02-24 23:28:56,556 - __main__ - INFO -   - Host: 0.0.0.0
+2026-02-24 23:28:56,556 - __main__ - INFO -   - Port: 5000
+2026-02-24 23:28:56,556 - __main__ - INFO -   - Debug: False
+2026-02-24 23:28:56,556 - __main__ - INFO -   - MLflow URI: http://mlflow:5000
+2026-02-24 23:28:56,557 - __main__ - INFO -   - Model version: 6104aff4
+2026-02-24 23:28:56,557 - __main__ - INFO - ==================================================
+2026-02-24 23:28:56,565 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+2026-02-24 23:28:56,566 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-24 23:28:58,078 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:28:58] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:29:28,155 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:29:28] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:29:58,271 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:29:58] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:30:28,348 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:30:28] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:30:58,428 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:30:58] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:31:28,517 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:31:28] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:31:58,601 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:31:58] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:32:28,687 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:32:28] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:32:58,785 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:32:58] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:33:28,878 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:33:28] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:33:58,993 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:33:58] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:34:29,065 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:34:29] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:34:59,200 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:34:59] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:35:29,270 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:35:29] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:35:59,344 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:35:59] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:36:29,416 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:36:29] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:36:59,496 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:36:59] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:37:29,589 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:37:29] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:37:59,674 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:37:59] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:38:29,772 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:38:29] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:38:59,850 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:38:59] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:39:30,004 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:39:30] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:40:00,092 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:40:00] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:40:30,178 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:40:30] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:41:00,243 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:41:00] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:41:30,330 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:41:30] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:42:00,406 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:42:00] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:42:30,470 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:42:30] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:43:00,541 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:43:00] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:43:30,624 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:43:30] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:44:00,709 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:44:00] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:44:30,828 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:44:30] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:45:00,912 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:45:00] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:45:31,021 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:45:31] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:46:01,099 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:46:01] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:46:31,176 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:46:31] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:47:01,261 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:47:01] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:47:31,359 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:47:31] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:48:01,434 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:48:01] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:48:31,519 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:48:31] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:49:01,596 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:49:01] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:49:31,659 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:49:31] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:50:01,772 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:50:01] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:50:31,852 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:50:31] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:51:01,919 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:51:01] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:51:31,991 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:51:31] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:52:02,070 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:52:02] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:52:32,133 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:52:32] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:53:02,247 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:53:02] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:53:32,329 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:53:32] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:54:02,428 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:54:02] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:54:32,496 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:54:32] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:55:02,573 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:55:02] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:55:32,642 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:55:32] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:56:02,769 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:56:02] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:56:32,829 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:56:32] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:57:02,972 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:57:02] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:57:33,071 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:57:33] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:58:03,176 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:58:03] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:58:33,267 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:58:33] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:59:03,419 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:59:03] "GET /health HTTP/1.1" 200 -
+2026-02-24 23:59:10,770 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:10,780 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:12,723 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:12,724 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:12] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:13,790 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:13,793 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:13,888 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:13,890 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:13] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:14,917 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:14,918 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:14,995 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:14,997 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:14] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:16,020 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:16,021 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:16,084 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:16,085 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:16] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:17,117 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:17,118 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:17,180 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:17,181 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:17] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:18,201 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:18,211 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:18,271 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:18,272 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:18] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:19,297 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:19,300 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:19,428 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:19,429 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:19] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:20,461 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:20,462 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:20,522 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:20,523 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:20] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:21,553 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:21,554 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:21,621 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:21,622 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:21] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:22,639 - __main__ - INFO - Received prediction request
+2026-02-24 23:59:22,640 - __main__ - INFO - Making predictions with model: 6104aff4
+2026-02-24 23:59:22,725 - __main__ - INFO - Prediction successful. Output shape: 1 sequences
+2026-02-24 23:59:22,727 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:22] "POST /predict HTTP/1.1" 200 -
+2026-02-24 23:59:23,354 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:23] "[33mGET / HTTP/1.1[0m" 404 -
+2026-02-24 23:59:23,685 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-02-24 23:59:27,798 - werkzeug - INFO - 172.19.0.1 - - [24/Feb/2026 23:59:27] "[33mGET / HTTP/1.1[0m" 404 -
+2026-02-24 23:59:33,476 - werkzeug - INFO - 127.0.0.1 - - [24/Feb/2026 23:59:33] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:00:03,539 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:00:03] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:00:33,590 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:00:33] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:01:03,682 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:01:03] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:01:33,770 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:01:33] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:02:03,863 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:02:03] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:02:33,967 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:02:33] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:03:04,047 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:03:04] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:03:34,149 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:03:34] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:04:04,233 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:04:04] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:04:34,289 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:04:34] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:05:04,378 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:05:04] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:05:34,448 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:05:34] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:06:04,528 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:06:04] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:06:34,603 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:06:34] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:07:04,683 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:07:04] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:07:34,783 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:07:34] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:08:04,872 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:08:04] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:08:34,971 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:08:34] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:09:05,099 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:09:05] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:09:35,171 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:09:35] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:10:05,233 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:10:05] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:10:35,341 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:10:35] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:11:05,461 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:11:05] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:11:35,532 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:11:35] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:12:05,626 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:12:05] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:12:35,720 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:12:35] "GET /health HTTP/1.1" 200 -
+2026-02-25 00:13:05,787 - werkzeug - INFO - 127.0.0.1 - - [25/Feb/2026 00:13:05] "GET /health HTTP/1.1" 200 -
